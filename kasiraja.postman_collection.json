@@ -1,0 +1,988 @@
+{
+	"info": {
+		"_postman_id": "1c084b49-8338-4956-84e4-e42d96bbeb5c",
+		"name": "KASIR AJA 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15455402",
+		"_collection_link": "https://www.postman.com/rachelsas/workspace/my-workspace/collection/15455402-1c084b49-8338-4956-84e4-e42d96bbeb5c?action=share&creator=15455402&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Authorization - Registration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var respon = JSON.parse(responseBody)\r",
+							"pm.collectionVariables.set(\"email\", \"sejahtera12@gmail.com\");\r",
+							"pm.collectionVariables.set(\"pass\", \"sejahtera12\");\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Value Check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"    pm.expect(jsonData.message).to.eql(\"Toko berhasil didaftarkan\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\": \"TOKO SEJAHTERA\",\r\n   \"email\": \"sejahtera12@gmail.com\",\r\n   \"password\": \"sejahtera12\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlKasirAja}}/registration",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"registration"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Registration Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"TOKO SEJAHTERA\",\r\n   \"email\": \"sejahtera@gnmail.com\",\r\n   \"password\": \"123adsfadf@\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlKasirAja}}/registration",
+							"host": [
+								"{{urlKasirAja}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "origin,User-Agent"
+						},
+						{
+							"key": "access-control-expose-headers",
+							"value": "WWW-Authenticate,Server-Authorization"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "122"
+						},
+						{
+							"key": "date",
+							"value": "Sat, 27 May 2023 05:05:16 GMT"
+						},
+						{
+							"key": "server",
+							"value": "LiteSpeed"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Niagahoster"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000; includeSubDomains; preload"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"Toko berhasil didaftarkan\",\n    \"data\": {\n        \"name\": \"TOKO SEJAHTERA\",\n        \"email\": \"sejahtera@gnmail.com\"\n    }\n}"
+				},
+				{
+					"name": "Registration faild - no password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"TOKO SEJAHTERA\",\r\n   \"email\": \"sejahtera@gnmail.com\",\r\n   \"password\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlKasirAja}}/registration",
+							"host": [
+								"{{urlKasirAja}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "origin,User-Agent"
+						},
+						{
+							"key": "access-control-expose-headers",
+							"value": "WWW-Authenticate,Server-Authorization"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "69"
+						},
+						{
+							"key": "date",
+							"value": "Sat, 27 May 2023 05:06:13 GMT"
+						},
+						{
+							"key": "server",
+							"value": "LiteSpeed"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Niagahoster"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000; includeSubDomains; preload"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"fail\",\n    \"message\": \"\\\"password\\\" is not allowed to be empty\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Authorization - Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var respon = JSON.parse(responseBody)\r",
+							"pm.collectionVariables.set(\"accessToken\", respon.data.accessToken);\r",
+							"pm.collectionVariables.set(\"refreshToken\", respon.data.refreshToken);\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Value Check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"    pm.expect(jsonData.message).to.eql(\"Authentication berhasil ditambahkan\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"email\": \"{{email}}\",\r\n   \"password\": \"{{pass}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlKasirAja}}/authentications",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"authentications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authorization - Refresh Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Value Check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"    pm.expect(jsonData.message).to.eql(\"Access Token berhasil diperbarui\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2YmRjY2VmLTIxYTctNGMwOS05MGUyLWNhZDAxMDcyMjZhNiIsImNvbXBhbnlJZCI6IjcyM2VhN2M3LTJmZTgtNDlhMC05NzliLWExMzdjNTcyZTViMiIsImlhdCI6MTY4NTE2NDg4Nn0.XF319UvEh152ZiwyIluUuHFH4yya8ZI8iRC-iyDIQ_E",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"refreshToken\": \"{{refreshToken}}\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{urlKasirAja}}/authentications",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"authentications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var respon = JSON.parse(responseBody)\r",
+							"pm.collectionVariables.set(\"userId\", respon.data.userId);\r",
+							"pm.collectionVariables.set(\"userName\", respon.data.name);\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Value Check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"    pm.expect(jsonData.message).to.eql(\"User berhasil ditambahkan\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxYmI3NmI2LWZmNjctNDRjNC05NzJjLTY3ZmI5NjczNmNhMyIsImNvbXBhbnlJZCI6ImQxMmU2ZTE2LTBiNWYtNDY4Yi05ZDI4LWMxY2VhNGEzNDlmNyIsImlhdCI6MTY4NTE3NzY1OH0.ZVfL3gSUY_j33fwE8Jwv6IV6a2CtwMNCeg7lBK1K_Fs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n   \"name\": \"Grace\",\r\n   \"email\": \"grace@gmail.com\",\r\n   \"password\": \"{{$randomPassword}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlKasirAja}}/users",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users - Get User Detail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Value Check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"});\r",
+							"const username = pm.collectionVariables.get(\"userName\");\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(username);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxYmI3NmI2LWZmNjctNDRjNC05NzJjLTY3ZmI5NjczNmNhMyIsImNvbXBhbnlJZCI6ImQxMmU2ZTE2LTBiNWYtNDY4Yi05ZDI4LWMxY2VhNGEzNDlmNyIsImlhdCI6MTY4NTE3Nzc0MH0.wtEdjWs8EZhbEHubaBclEnlpZ-5m5q3VBksiZ1M4xss",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{urlKasirAja}}/users/{{userId}}",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Get User List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxYmI3NmI2LWZmNjctNDRjNC05NzJjLTY3ZmI5NjczNmNhMyIsImNvbXBhbnlJZCI6ImQxMmU2ZTE2LTBiNWYtNDY4Yi05ZDI4LWMxY2VhNGEzNDlmNyIsImlhdCI6MTY4NTE3Nzc0MH0.wtEdjWs8EZhbEHubaBclEnlpZ-5m5q3VBksiZ1M4xss",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{urlKasirAja}}/users",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"    pm.expect(jsonData.message).to.eql(\"User berhasil diupdate\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxYmI3NmI2LWZmNjctNDRjNC05NzJjLTY3ZmI5NjczNmNhMyIsImNvbXBhbnlJZCI6ImQxMmU2ZTE2LTBiNWYtNDY4Yi05ZDI4LWMxY2VhNGEzNDlmNyIsImlhdCI6MTY4NTE3Nzc0MH0.wtEdjWs8EZhbEHubaBclEnlpZ-5m5q3VBksiZ1M4xss",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Grace Raya\",\r\n    \"email\": \"gracera@hotmail.com\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlKasirAja}}/users/{{userId}}",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Delete User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"User berhasil dihapus\");\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxYmI3NmI2LWZmNjctNDRjNC05NzJjLTY3ZmI5NjczNmNhMyIsImNvbXBhbnlJZCI6ImQxMmU2ZTE2LTBiNWYtNDY4Yi05ZDI4LWMxY2VhNGEzNDlmNyIsImlhdCI6MTY4NTE3Nzc0MH0.wtEdjWs8EZhbEHubaBclEnlpZ-5m5q3VBksiZ1M4xss",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{urlKasirAja}}/users/784f863d-b9ee-4bb9-ba6c-ea4b004383a7",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"users",
+						"784f863d-b9ee-4bb9-ba6c-ea4b004383a7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Units - Add Unit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Value Check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Unit berhasil ditambahkan\");\r",
+							"});\r",
+							"var respon = JSON.parse(responseBody)\r",
+							"pm.collectionVariables.set(\"unitId\", respon.data.unitId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxYmI3NmI2LWZmNjctNDRjNC05NzJjLTY3ZmI5NjczNmNhMyIsImNvbXBhbnlJZCI6ImQxMmU2ZTE2LTBiNWYtNDY4Yi05ZDI4LWMxY2VhNGEzNDlmNyIsImlhdCI6MTY4NTE3Nzc0MH0.wtEdjWs8EZhbEHubaBclEnlpZ-5m5q3VBksiZ1M4xss",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\": \"Liter\",\r\n   \"description\": \"Berat\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlKasirAja}}/units",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"units"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Units - Get Unit Detail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Value Check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxYmI3NmI2LWZmNjctNDRjNC05NzJjLTY3ZmI5NjczNmNhMyIsImNvbXBhbnlJZCI6ImQxMmU2ZTE2LTBiNWYtNDY4Yi05ZDI4LWMxY2VhNGEzNDlmNyIsImlhdCI6MTY4NTE3Nzc0MH0.wtEdjWs8EZhbEHubaBclEnlpZ-5m5q3VBksiZ1M4xss",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{urlKasirAja}}/units/{{unitId}}",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"units",
+						"{{unitId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Units - Get Unit List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Value Check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxYmI3NmI2LWZmNjctNDRjNC05NzJjLTY3ZmI5NjczNmNhMyIsImNvbXBhbnlJZCI6ImQxMmU2ZTE2LTBiNWYtNDY4Yi05ZDI4LWMxY2VhNGEzNDlmNyIsImlhdCI6MTY4NTE3Nzc0MH0.wtEdjWs8EZhbEHubaBclEnlpZ-5m5q3VBksiZ1M4xss",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{urlKasirAja}}/units",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"units"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Units - Update Unit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Value Check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxYmI3NmI2LWZmNjctNDRjNC05NzJjLTY3ZmI5NjczNmNhMyIsImNvbXBhbnlJZCI6ImQxMmU2ZTE2LTBiNWYtNDY4Yi05ZDI4LWMxY2VhNGEzNDlmNyIsImlhdCI6MTY4NTE3Nzc0MH0.wtEdjWs8EZhbEHubaBclEnlpZ-5m5q3VBksiZ1M4xss",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\": \"meter\",\r\n   \"description\": \"panjang\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlKasirAja}}/units/{{unitId}}",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"units",
+						"{{unitId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Units - Delete Unit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Value Check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxYmI3NmI2LWZmNjctNDRjNC05NzJjLTY3ZmI5NjczNmNhMyIsImNvbXBhbnlJZCI6ImQxMmU2ZTE2LTBiNWYtNDY4Yi05ZDI4LWMxY2VhNGEzNDlmNyIsImlhdCI6MTY4NTE3Nzc0MH0.wtEdjWs8EZhbEHubaBclEnlpZ-5m5q3VBksiZ1M4xss",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{urlKasirAja}}/units/e9b87391-a8df-4357-9bcb-ddfaea8ccfbd",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"units",
+						"e9b87391-a8df-4357-9bcb-ddfaea8ccfbd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categories - Add Category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 20000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(20000);\r",
+							"});\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Value Check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"    pm.expect(jsonData.message).to.eql(\"Category berhasil ditambahkan\");\r",
+							"});\r",
+							"\r",
+							"var respon = JSON.parse(responseBody)\r",
+							"pm.collectionVariables.set(\"categoryId\", respon.data.categoryId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxYmI3NmI2LWZmNjctNDRjNC05NzJjLTY3ZmI5NjczNmNhMyIsImNvbXBhbnlJZCI6ImQxMmU2ZTE2LTBiNWYtNDY4Yi05ZDI4LWMxY2VhNGEzNDlmNyIsImlhdCI6MTY4NTE3Nzc0MH0.wtEdjWs8EZhbEHubaBclEnlpZ-5m5q3VBksiZ1M4xss",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\": \"Dancow\",\r\n   \"description\": \"Minuman susu\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlKasirAja}}/categories",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categories - Get Category Detail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 20000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(20000);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Value Check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxYmI3NmI2LWZmNjctNDRjNC05NzJjLTY3ZmI5NjczNmNhMyIsImNvbXBhbnlJZCI6ImQxMmU2ZTE2LTBiNWYtNDY4Yi05ZDI4LWMxY2VhNGEzNDlmNyIsImlhdCI6MTY4NTE3Nzc0MH0.wtEdjWs8EZhbEHubaBclEnlpZ-5m5q3VBksiZ1M4xss",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{urlKasirAja}}/categories/{{categoryId}}",
+					"host": [
+						"{{urlKasirAja}}"
+					],
+					"path": [
+						"categories",
+						"{{categoryId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "urlKasirAja",
+			"value": "https://kasir-api.belajarqa.com",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "pass",
+			"value": ""
+		},
+		{
+			"key": "accessToken",
+			"value": ""
+		},
+		{
+			"key": "refreshToken",
+			"value": ""
+		},
+		{
+			"key": "userId",
+			"value": ""
+		},
+		{
+			"key": "userName",
+			"value": ""
+		},
+		{
+			"key": "unitId",
+			"value": ""
+		},
+		{
+			"key": "categoryId",
+			"value": ""
+		}
+	]
+}

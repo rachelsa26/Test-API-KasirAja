@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3"
+  },
+  "name": "testapi",
+  "version": "1.0.0",
+  "description": "Deskripsi bebas",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "mocha"
+  ],
+  "author": "elsa",
+  "license": "ISC"
+}
